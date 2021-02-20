@@ -84,6 +84,23 @@ describe('Domer', ()=> {
     })
   })
 
+  describe('createElements', ()=> {
+    const createElements = Domer.createElements
+
+    it('creates elements from html', ()=> {
+      const html = divHtml(1) + divHtml(2)
+      const elements = createElements(html)
+      expect(elements.length).to.equal(2)
+      expect(elements[0].innerText).to.equal('div1')
+      expect(elements[1].innerText).to.equal('div2')
+    })
+
+    it('returns empty array if no html', ()=> {
+      expect(createElements()).to.eql([])
+      expect(createElements(' ')).to.eql([])
+    })
+  })
+
 })
 
 function divHtml(id) {

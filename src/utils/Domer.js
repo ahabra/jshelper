@@ -54,3 +54,11 @@ export function getAttributes(el) {
   return result
 }
 
+export function createElements(html = '') {
+  html = html.trim()
+  if (!html) return []
+
+  const temp = document.createElement('template')
+  temp.innerHTML = html
+  return Array.from(temp.content.childNodes)
+}
