@@ -5,20 +5,19 @@ describe('Domer', ()=> {
   beforeEach(removeTestDivs)
 
   describe('find', ()=> {
-    const find = Domer.find
 
     describe('id', ()=> {
       it('finds an element by its id', ()=> {
         addDivs([1])
-        expect(find.id('div1').innerText).to.equal('div1')
-        expect(find.id('divX')).to.be.null
+        expect(Domer.id('div1').innerText).to.equal('div1')
+        expect(Domer.id('divX')).to.be.null
       })
     })
 
     describe('all', ()=> {
       it('finds elements matching selector', ()=> {
         addDivs([1, 2, 3])
-        const found = find.all('.domer-test')
+        const found = Domer.all('.domer-test')
         expect(found.length).to.equal(3)
         expect(found[0].innerText).to.equal('div1')
         expect(found[1].innerText).to.equal('div2')
@@ -26,15 +25,15 @@ describe('Domer', ()=> {
       })
 
       it('returns an empty array if no match', ()=> {
-        const found = find.all('.domer-test-NOT-THERE')
+        const found = Domer.all('.domer-test-NOT-THERE')
         expect(found).to.eql([])
       })
 
       it('finds elements inside a given container', ()=> {
         addDivs(['root'])
-        const root = find.id('divroot')
+        const root = Domer.id('divroot')
         addDivs([1, 2], root)
-        const found = find.all('.domer-test', root)
+        const found = Domer.all('.domer-test', root)
         expect(found.length).to.equal(2)
         expect(found[0].innerText).to.equal('div1')
         expect(found[1].innerText).to.equal('div2')
@@ -44,25 +43,25 @@ describe('Domer', ()=> {
     describe('first', ()=> {
       it('finds first element that match selector', ()=> {
         addDivs([1, 2])
-        expect(find.first('.domer-test').innerText).to.equal('div1')
-        expect(find.first('.domer-test-NOT-THERE')).to.nested.null
+        expect(Domer.first('.domer-test').innerText).to.equal('div1')
+        expect(Domer.first('.domer-test-NOT-THERE')).to.nested.null
       })
 
       it('searches following a / sepatrated path', ()=> {
         addNestedDivs([1, 2, 3])
-        const found = find.first('#div1/#div2/#div3')
+        const found = Domer.first('#div1/#div2/#div3')
         expect(found.innerText).to.equal('div3')
       })
 
       it('returns null if any path element is not found', ()=> {
         addNestedDivs([1, 2, 3])
-        const found = find.first('#div1/#divXX/#div3')
+        const found = Domer.first('#div1/#divXX/#div3')
         expect(found).to.be.null
       })
 
       it('ignores empty path elements', ()=> {
         addNestedDivs([1, 2, 3])
-        const found = find.first('#div1//#div2  ////  #div3')
+        const found = Domer.first('#div1//#div2  ////  #div3')
         expect(found.innerText).to.equal('div3')
       })
 
@@ -75,7 +74,7 @@ describe('Domer', ()=> {
 
     it('returns element attributes as an obbject', ()=> {
       addDivs([1])
-      const div = Domer.find.id('div1')
+      const div = Domer.id('div1')
       const expected = {
         id: 'div1',
         class: 'domer-test'
@@ -144,7 +143,7 @@ describe('Domer', ()=> {
     it('adds html string', ()=> {
       const html = divHtml(1)
       Domer.add(document.body, html)
-      const found = Domer.find.all('.domer-test')
+      const found = Domer.all('.domer-test')
       expect(found.length).to.equal(1)
     })
 
@@ -153,7 +152,7 @@ describe('Domer', ()=> {
         class: 'domer-test'
       }})
       Domer.add(document.body, el)
-      const found = Domer.find.all('.domer-test')
+      const found = Domer.all('.domer-test')
       expect(found.length).to.equal(1)
       expect(found[0].tagName).to.equal('P')
     })
@@ -163,7 +162,7 @@ describe('Domer', ()=> {
       const elements = Domer.createElements(html)
 
       Domer.add(document.body, elements)
-      const found = Domer.find.all('.domer-test')
+      const found = Domer.all('.domer-test')
       expect(found.length).to.equal(2)
     })
   })
@@ -171,7 +170,7 @@ describe('Domer', ()=> {
   describe('setContent', ()=> {
     it('sets the content of an element', ()=> {
       addDivs([1])
-      const el = Domer.find.id('div1')
+      const el = Domer.id('div1')
       expect(el.innerText).to.equal('div1')
 
       Domer.setContent(el, 'foo')
@@ -184,9 +183,9 @@ describe('Domer', ()=> {
 
     it('removes selected elements', ()=> {
       addDivs([1, 2, 3])
-      expect(Domer.find.all('.domer-test').length).to.equal(3)
+      expect(Domer.all('.domer-test').length).to.equal(3)
       removeElements('.domer-test')
-      expect(Domer.find.all('.domer-test').length).to.equal(0)
+      expect(Domer.all('.domer-test').length).to.equal(0)
     })
   })
 
@@ -217,7 +216,7 @@ function addDivs(ids, root = document.body) {
 function addNestedDivs(ids, root = document.body) {
   ids.forEach(id => {
     addDivs([id], root)
-    root = Domer.find.id('div' + id)
+    root = Domer.id('div' + id)
   })
 }
 

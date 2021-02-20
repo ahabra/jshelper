@@ -1,22 +1,20 @@
 import * as Objecter from './Objecter'
 
-export const find = {id, all, first}
-
-function id(elementId, root = document) {
+export function id(elementId, root = document) {
   if (isWebComponent(root)) {
     root = root.shadowRoot
   }
   return root.getElementById(elementId)
 }
 
-function all(selector, root = document) {
+export function all(selector, root = document) {
   if (isWebComponent(root)) {
     root = root.shadowRoot
   }
   return Array.from(root.querySelectorAll(selector))
 }
 
-function first(selector, root = document) {
+export function first(selector, root = document) {
   if (isWebComponent(root)) {
     root = root.shadowRoot
   }
