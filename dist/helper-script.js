@@ -5,13 +5,4 @@
 
 
 var jshelper = (() => {
-  // src/utils/DomUtils.js
-  function select(selector, root) {
-    root = root || document;
-    return Array.from(root.querySelectorAll(":scope " + selector));
-  }
-
-  // src/helper.js
-  var time = new Date().toLocaleString();
-  select("#content")[0].innerHTML = `The time now is ${time}`;
 })();
