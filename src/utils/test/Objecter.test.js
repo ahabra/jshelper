@@ -3,6 +3,16 @@ import * as Objecter from '../Objecter'
 
 
 describe('Objecter', () => {
+  describe('isNil', ()=> {
+    const isNil = Objecter.isNil
+
+    it('checks null or undefined arg', ()=> {
+      expect(isNil()).to.be.true
+      expect(isNil(null)).to.be.true
+      expect(isNil('')).to.be.false
+      expect(isNil(false)).to.be.false
+    })
+  })
 
   describe('isString', () => {
     const isString = Objecter.isString

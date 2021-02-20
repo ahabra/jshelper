@@ -8,23 +8,23 @@ export function indexOf(st, search, fromIndex = 0, ignoreCase = false) {
   return st.indexOf(search, fromIndex)
 }
 
-export function firstCharIndex(st, callback) {
+export function indexOfFirstMatch(st, callback) {
   if (!callback || !st) return -1
 
   return st.split('').findIndex(callback)
 }
 
-export function lastCharIndex(st, callback) {
+export function indexOfLastMatch(st, callback) {
   if (!callback || !st) return -1
 
   const chars = st.split('')
   for (let i = chars.length; i >= 0; --i) {
-    if (callback(chars[i])) return i
+    if (callback(chars[i], i)) return i
   }
   return -1
 }
 
-export function startsWith(st, search, ignoreCase = false) {
+export function startsWith(st = '', search = undefined, ignoreCase = false) {
   if (ignoreCase) {
     const start = st.substring(0, search.length).toLowerCase()
     return search.toLowerCase() === start
@@ -88,4 +88,14 @@ export function trim(s) {
 
 export function isEmpty(s) {
   return s === undefined || s === null || s === ''
+}
+
+export function replaceTemplate(text = '', values = {}, preTag = '${', postTag = '}') {
+  Objecter.forEachEntry(values, (k, v) => {
+    if (v !== undefined) {
+      k = preTag + k + postTag
+      text = text.replaceAll(k, v)
+    }
+  })
+  return text
 }

@@ -1,3 +1,7 @@
+export function isNil(x) {
+  return x === null || x === undefined
+}
+
 export function isString(s) {
   return isType(s, 'String')
 }
