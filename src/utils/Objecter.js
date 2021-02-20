@@ -25,5 +25,6 @@ export function forEachEntry(object, func) {
 
 /** Check if the given object has a property with given name */
 export function has(object, propName) {
+  if (!object || !propName) return false
   return Object.prototype.hasOwnProperty.call(object, propName)
 }
