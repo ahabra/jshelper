@@ -70,6 +70,19 @@ describe('Domer', ()=> {
 
   })
 
+  describe('getAttributes', ()=> {
+    const getAttributes = Domer.getAttributes
+
+    it('returns element attributes as an obbject', ()=> {
+      addDivs([1])
+      const div = Domer.find.id('div1')
+      const expected = {
+        id: 'div1',
+        class: 'domer-test'
+      }
+      expect(getAttributes(div)).to.eql(expected)
+    })
+  })
 
 })
 

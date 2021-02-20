@@ -41,3 +41,16 @@ function nextChild(pathItem, root) {
 function isWebComponent(el) {
   return el && el.shadowRoot && el.tagName.includes('-')
 }
+
+export function getAttributes(el) {
+  const result = {}
+  const atts = el.attributes
+  if (!atts || atts.length === 0) return result
+
+  for (let i = 0; i < atts.length; i++) {
+    const a = atts[i]
+    result[a.name] = a.value
+  }
+  return result
+}
+
