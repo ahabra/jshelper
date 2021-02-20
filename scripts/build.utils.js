@@ -29,7 +29,7 @@ function copyIndexHtml() {
 
 function build({format, minify, external, fileNameSuffix}) {
   const buildOptions = {
-    entryPoints: ['src/helper.js'],
+    entryPoints: ['src/Helper.js'],
     bundle: true,
     banner,
     outfile: `${out}/helper-${fileNameSuffix}.js`,
