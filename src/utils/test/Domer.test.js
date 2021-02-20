@@ -101,6 +101,107 @@ describe('Domer', ()=> {
     })
   })
 
+  describe('createElement', ()=> {
+    const createElement = Domer.createElement
+
+    it('creates element', ()=> {
+      const name = 'p'
+      const attributes = {
+        a: '1',
+        b: '2'
+      }
+      const content = 'foo'
+      const el = createElement({name, attributes, content})
+      expect(el.tagName).to.equal(name.toUpperCase())
+      expect(el.innerText).to.equal(content)
+      expect(Domer.getAttributes(el)).to.eql(attributes)
+
+    })
+
+    it('returns null if no name', ()=> {
+      const el = createElement({})
+      expect(el).to.be.null
+    })
+  })
+
+  describe('tag', ()=> {
+    it('creates html tag string', ()=> {
+      const attributes = {
+        a: 1,
+        b: 2
+      }
+      const tag = Domer.tag({name: 't', attributes, content: 'foo'})
+      expect(tag).to.equal('<t a="1" b="2">foo</t>')
+    })
+
+    it('returns empty string if no name provided', ()=> {
+      expect(Domer.tag()).to.equal('')
+      expect(Domer.tag({name: ''})).to.equal('')
+    })
+  })
+
+  describe('add', ()=> {
+    it('adds html string', ()=> {
+      const html = divHtml(1)
+      Domer.add(document.body, html)
+      const found = Domer.find.all('.domer-test')
+      expect(found.length).to.equal(1)
+    })
+
+    it('adds a DOM element', ()=> {
+      const el = Domer.createElement({name: 'p', attributes: {
+        class: 'domer-test'
+      }})
+      Domer.add(document.body, el)
+      const found = Domer.find.all('.domer-test')
+      expect(found.length).to.equal(1)
+      expect(found[0].tagName).to.equal('P')
+    })
+
+    it('adds an array of elements', ()=> {
+      const html = divHtml(1) + divHtml(2)
+      const elements = Domer.createElements(html)
+
+      Domer.add(document.body, elements)
+      const found = Domer.find.all('.domer-test')
+      expect(found.length).to.equal(2)
+    })
+  })
+
+  describe('setContent', ()=> {
+    it('sets the content of an element', ()=> {
+      addDivs([1])
+      const el = Domer.find.id('div1')
+      expect(el.innerText).to.equal('div1')
+
+      Domer.setContent(el, 'foo')
+      expect(el.innerText).to.equal('foo')
+    })
+  })
+
+  describe('removeElements', ()=> {
+    const removeElements = Domer.removeElements
+
+    it('removes selected elements', ()=> {
+      addDivs([1, 2, 3])
+      expect(Domer.find.all('.domer-test').length).to.equal(3)
+      removeElements('.domer-test')
+      expect(Domer.find.all('.domer-test').length).to.equal(0)
+    })
+  })
+
+  describe('classPresentIf', ()=> {
+    const classPresentIf = Domer.classPresentIf
+
+    it('adds or remove class based on condition', ()=> {
+      const el = Domer.createElement({name: 'p'})
+      classPresentIf(el, 'c1', true)
+      expect(el.classList[0]).to.equal('c1')
+      classPresentIf(el, 'c1', false)
+      expect(el.classList.length).to.equal(0)
+    })
+  })
+
 })
 
 function divHtml(id) {
