@@ -1,5 +1,6 @@
 import * as Objecter from './Objecter'
 
+/** Select element with a given id */
 export function id(elementId, root = document) {
   if (isWebComponent(root)) {
     root = root.shadowRoot
@@ -7,6 +8,7 @@ export function id(elementId, root = document) {
   return root.getElementById(elementId)
 }
 
+/** Select all elements matching given selector */
 export function all(selector, root = document) {
   if (isWebComponent(root)) {
     root = root.shadowRoot
@@ -14,6 +16,10 @@ export function all(selector, root = document) {
   return Array.from(root.querySelectorAll(selector))
 }
 
+/**
+ * Select first element matching selector. Selector can be
+ * a path with its parts separated by slash /
+ */
 export function first(selector, root = document) {
   if (isWebComponent(root)) {
     root = root.shadowRoot
@@ -41,6 +47,7 @@ function isWebComponent(el) {
   return el && el.shadowRoot && el.tagName.includes('-')
 }
 
+/** Get attributes of an element as an object with key/value */
 export function getAttributes(el) {
   const result = {}
   const atts = el.attributes
@@ -53,6 +60,7 @@ export function getAttributes(el) {
   return result
 }
 
+/** Create an array of DOM elements from given html */
 export function createElements(html = '') {
   html = html.trim()
   if (!html) return []
@@ -62,6 +70,7 @@ export function createElements(html = '') {
   return Array.from(temp.content.childNodes)
 }
 
+/** Create a single DOM element */
 export function createElement({name, attributes = {}, content = ''} = {}) {
   const html = tag({name, attributes, content})
 
@@ -70,6 +79,7 @@ export function createElement({name, attributes = {}, content = ''} = {}) {
   return elements[0]
 }
 
+/** Create the html for a given tag */
 export function tag({name, attributes = {}, content = ''} = {}) {
   if (!name) return ''
   const atts = attsToString(attributes)
@@ -115,11 +125,13 @@ function addElements(target, tobeAdded, location) {
   }
 }
 
+/** Set the content of an element */
 export function setContent(element, content) {
   element.innerHTML = ''
   element.append(content)
 }
 
+/** Remove elements matching given selector */
 export function removeElements(selector, root = document) {
   const elements = all(selector, root)
   elements.forEach(el => {
@@ -127,6 +139,7 @@ export function removeElements(selector, root = document) {
   })
 }
 
+/** Add/remove a given class if condition is true/false */
 export function classPresentIf(el, cssClass, condition) {
   const func = condition ? 'add' : 'remove'
   el.classList[func](cssClass)
