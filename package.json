@@ -1,10 +1,10 @@
 {
-  "name": "@techexp/js-helper",
+  "name": "@techexp/jshelper",
   "version": "0.0.1",
   "description": "JavaScript Helpers Library",
   "author": "Abdul Habra",
   "license": "Apache",
-  "repository": "ahabra/js-helper",
+  "repository": "ahabra/jshelper",
   "main": "dist/helper-esm.js",
   "keywords": [
     "JS Utilities",
