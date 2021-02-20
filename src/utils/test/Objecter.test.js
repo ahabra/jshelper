@@ -75,4 +75,40 @@ describe('Objecter', () => {
     })
   })
 
+  describe('equals', ()=> {
+    const equals = Objecter.equals
+    it('checks for simple types', ()=> {
+      expect(equals()).to.be.true
+      expect(equals(1, 1)).to.be.true
+      expect(equals(1)).to.be.false
+    })
+
+    it('checks for deep object equality', ()=> {
+      const now = new Date()
+      const d1 = {
+        a: 1,
+        b: {
+          bb: 2
+        },
+        c: 'cc',
+        now
+      }
+      const d2 = {
+        a: 1,
+        b: {
+          bb: 2
+        },
+        c: 'cc',
+        now
+      }
+
+      expect(d1).to.not.equal(d2)
+      expect(d1).to.eql(d2)
+      expect(equals(d1, d2)).to.be.true
+
+      d2.x = true
+      expect(equals(d1, d2)).to.be.false
+    })
+  })
+
 })
