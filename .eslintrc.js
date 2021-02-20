@@ -15,7 +15,7 @@ module.exports = {
         ecmaVersion: 12,
         sourceType: 'module'
     },
-    
+
     globals: {
         describe: readonly,
         it: readonly,
@@ -30,7 +30,7 @@ module.exports = {
         semi: [error, never],
 
         'block-scoped-var': [error],
-        complexity: [error, 4],
+        complexity: [error, 5],
         'dot-location': [error, 'object'],
         eqeqeq: [error, always],
         'no-else-return': [error],

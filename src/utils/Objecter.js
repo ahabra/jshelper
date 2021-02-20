@@ -11,6 +11,8 @@ function isType(v, type) {
 }
 
 export function forEachEntry(object, func) {
+  if (!object || !func) return
+
   if (Array.isArray(object)) {
     object.forEach((v, index) => {
       func(index, v)
@@ -25,4 +27,3 @@ export function forEachEntry(object, func) {
 export function has(object, propName) {
   return Object.prototype.hasOwnProperty.call(object, propName)
 }
-

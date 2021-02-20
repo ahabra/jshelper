@@ -1,12 +1,12 @@
 import {expect} from '@esm-bundle/chai'
-import * as ObjectUtils from '../ObjectUtils'
+import * as Objecter from '../Objecter'
 
 
-describe('ObjectUtils', () => {
+describe('Objecter', () => {
 
   describe('isString', () => {
     it('checks its argument', () => {
-      expect(ObjectUtils.isString('')).to.be.true
+      expect(Objecter.isString('')).to.be.true
     })
 
     it.skip('isString', () => {
@@ -16,4 +16,3 @@ describe('ObjectUtils', () => {
 
 
 })
-
