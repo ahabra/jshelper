@@ -1,6 +1,8 @@
 # JS Helper Library
 A set of light-weight functions that help in everyday's JS programming.
 
+The size of this library, minified and zipped is about 2KB.
+
 ## Introduction
 There is a set of functions that I used to recreate on most JS web programming projects. This library organizses these functions and provide better test coverage. These functions can be groups into these categories:
 * Object functions: like check data type, travers object/array content, or deep equality check.
