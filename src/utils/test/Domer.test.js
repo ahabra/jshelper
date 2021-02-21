@@ -110,7 +110,7 @@ describe('Domer', ()=> {
         b: '2'
       }
       const content = 'foo'
-      const el = createElement({name, attributes, content})
+      const el = createElement(name, attributes, content)
       expect(el.tagName).to.equal(name.toUpperCase())
       expect(el.innerText).to.equal(content)
       expect(Domer.getAttributes(el)).to.eql(attributes)
@@ -118,7 +118,7 @@ describe('Domer', ()=> {
     })
 
     it('returns null if no name', ()=> {
-      const el = createElement({})
+      const el = createElement()
       expect(el).to.be.null
     })
   })
@@ -129,13 +129,13 @@ describe('Domer', ()=> {
         a: 1,
         b: 2
       }
-      const tag = Domer.tag({name: 't', attributes, content: 'foo'})
+      const tag = Domer.tag('t', attributes, 'foo')
       expect(tag).to.equal('<t a="1" b="2">foo</t>')
     })
 
     it('returns empty string if no name provided', ()=> {
       expect(Domer.tag()).to.equal('')
-      expect(Domer.tag({name: ''})).to.equal('')
+      expect(Domer.tag('')).to.equal('')
     })
   })
 
@@ -148,9 +148,10 @@ describe('Domer', ()=> {
     })
 
     it('adds a DOM element', ()=> {
-      const el = Domer.createElement({name: 'p', attributes: {
+      const attributes = {
         class: 'domer-test'
-      }})
+      }
+      const el = Domer.createElement('p', attributes)
       Domer.add(document.body, el)
       const found = Domer.all('.domer-test')
       expect(found.length).to.equal(1)
@@ -193,7 +194,7 @@ describe('Domer', ()=> {
     const classPresentIf = Domer.classPresentIf
 
     it('adds or remove class based on condition', ()=> {
-      const el = Domer.createElement({name: 'p'})
+      const el = Domer.createElement('p')
       classPresentIf(el, 'c1', true)
       expect(el.classList[0]).to.equal('c1')
       classPresentIf(el, 'c1', false)

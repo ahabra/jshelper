@@ -173,14 +173,14 @@ var jshelper = (() => {
     temp.innerHTML = html;
     return Array.from(temp.content.childNodes);
   }
-  function createElement({name, attributes = {}, content = ""} = {}) {
-    const html = tag({name, attributes, content});
+  function createElement(name, attributes = {}, content = "") {
+    const html = tag(name, attributes, content);
     const elements = createElements(html);
     if (elements.length === 0)
       return null;
     return elements[0];
   }
-  function tag({name, attributes = {}, content = ""} = {}) {
+  function tag(name, attributes = {}, content = "") {
     if (!name)
       return "";
     const atts = attsToString(attributes);

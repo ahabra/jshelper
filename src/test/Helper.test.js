@@ -5,7 +5,7 @@ import {Domer, Objecter, Stringer} from '../Helper'
 describe('Helper', ()=> {
 
   it('wires Domer', ()=> {
-    const p = Domer.tag({name: 'p'})
+    const p = Domer.tag('p')
     expect(p).to.equal('<p></p>')
   })
 

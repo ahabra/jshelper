@@ -71,8 +71,8 @@ export function createElements(html = '') {
 }
 
 /** Create a single DOM element */
-export function createElement({name, attributes = {}, content = ''} = {}) {
-  const html = tag({name, attributes, content})
+export function createElement(name, attributes = {}, content = '') {
+  const html = tag(name, attributes, content)
 
   const elements = createElements(html)
   if (elements.length === 0) return null
@@ -80,7 +80,7 @@ export function createElement({name, attributes = {}, content = ''} = {}) {
 }
 
 /** Create the html for a given tag */
-export function tag({name, attributes = {}, content = ''} = {}) {
+export function tag(name, attributes = {}, content = '') {
   if (!name) return ''
   const atts = attsToString(attributes)
   return `<${name}${atts}>${content}</${name}>`
