@@ -66,32 +66,32 @@ The library consists of several modules, each with related functionality.
 ### Objecter
 Provides functions related to object manipulation.
 
-### `isNil(x)`
+#### `isNil(x)`
 Check if given argument is null or undefined
 
-### `isString(s)`
+#### `isString(s)`
 Check if given argument is of String type
 
-### `isFunction(f)`
+#### `isFunction(f)`
 Check if given argument is of Function type
 
-### `isDate(d)`
+#### `isDate(d)`
 Check if given argument is of Date type
 
-### `forEachEntry(object, func)`
+#### `forEachEntry(object, func)`
 Traverse the given object/array and call `func` for each element.
 `func` will be called with (key, value) arguments. For arrays, key is the index.
 
-### `has(object, propName)`
+#### `has(object, propName)`
 Check if the given object has a property with given name
 
-### `equals(a, b)`
+#### `equals(a, b)`
 Deep equality test between given arguments
 
-## Stringer
+### Stringer
 Provide String handling functions
 
-### `indexOf(st, search, fromIndex = 0, ignoreCase = false)`
+#### `indexOf(st, search, fromIndex = 0, ignoreCase = false)`
 Find the index of a given string inside another. It takes these arguments:
 * `st` The string to search
 * `search` The string to look for
@@ -99,74 +99,74 @@ Find the index of a given string inside another. It takes these arguments:
 * `ignoreCase` Optional, default = false. Case sensitivity
 Returns the index of the found search string, -1 if not found.
 
-### `indexOfFirstMatch(st, callback)`
+#### `indexOfFirstMatch(st, callback)`
 Index of first charcter matching the given criterion. It takes these arguments:
 * `st` The string to search
 * `callback` A callback function which takes two arguments (char, index). This callback function should return true if the charcter matches.
 
 Returns the index of the found character, -1 if not found.
 
-### `indexOfLastMatch(st, callback)`
+#### `indexOfLastMatch(st, callback)`
 Index of last charcter matching the given criterion. It takes these arguments:
 * `st` The string to search
 * `callback` A callback function which takes two arguments (char, index). This callback function should return true if the charcter matches.
 
 Returns the index of the found character, -1 if not found.
 
-### `startsWith(st, search, ignoreCase = false)`
+#### `startsWith(st, search, ignoreCase = false)`
 Check if a given string starts with a given search string. It takes up to three arguments:
 * `st` The String to search
 * `search` The desired start
 * `ignoreCase` case sensitivity
 Returns true if matches, false if not.
 
-### `endsWith(st, search, ignoreCase = false)`
+#### `endsWith(st, search, ignoreCase = false)`
 Check if a given string ends with a given search string. It takes these arguments:
 * `st` The String to search
 * `search` The desired start
 * `ignoreCase` case sensitivity
 Returns true if matches, false if not.
 
-### `removePrefix(st, prefix, ignoreCase = false)`
+#### `removePrefix(st, prefix, ignoreCase = false)`
 Remove a given prefix from a string, if found. It takes these arguments:
 * `st` The string to search
 * `prefix` The prefix string to remove
 * `ignoreCase` case sensitivity
 
-### `removeSuffix(st, suffix, ignoreCase = false)`
+#### `removeSuffix(st, suffix, ignoreCase = false)`
 Remove a given suffix from a string, if found. It takes these arguments:
 * `st` The string to search
 * `suffix` The suffix string to remove
 * `ignoreCase` case sensitivity
 
-### `removeSurrounding(st, prefix, suffix, ignoreCase = false)`
+#### `removeSurrounding(st, prefix, suffix, ignoreCase = false)`
 Remove a given prefix and suffix from a string. It takes these arguments:
 * `st` The string to search
 * `prefix` The prefix string to remove
 * `suffix` The suffix string to remove
 * `ignoreCase` case sensitivity
 
-### `substringAfter(st, search, ignoreCase = false)`
+#### `substringAfter(st, search, ignoreCase = false)`
 Find the substring after the first occurance of a search string. It takes these arguments:
 * `st` The string to search
 * search The string to look for
 * `ignoreCase` case sensitivity
 Returns the substring after search. Returns empty string if not found
 
-### `substringBefore(st, search, ignoreCase = false)`
+#### `substringBefore(st, search, ignoreCase = false)`
 Find the substring before the first occurance of a search string. It takes these arguments:
 * `st` The string to search
 * `search` The string to look for
 * `ignoreCase` case sensitivity
 Returns the substring before search. Returns whole string if not found.
 
-### `trim(s)`
+#### `trim(s)`
 Trim given string. If string is null or undefined, returns empty string.
 
-### `isEmpty(s)`
+#### `isEmpty(s)`
 Check if given string is undefined, null, or zero length.
 
-### `replaceTemplate(text = '', values = {}, preTag = '${', postTag = '}')`
+#### `replaceTemplate(text = '', values = {}, preTag = '${', postTag = '}')`
 Search text for keys in values, and replace them. It takes these arguments:
 * `text` The template text
 * `values` An object with keys/values to replace in the template
