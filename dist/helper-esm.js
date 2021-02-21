@@ -327,7 +327,7 @@ function replaceTemplate(text = "", values = {}, preTag = "${", postTag = "}") {
 }
 
 // src/Helper.js
-var helper = {Domer: Domer_exports, Objecter: Objecter_exports, Stringer: Stringer_exports};
+var Helper = {Domer: Domer_exports, Objecter: Objecter_exports, Stringer: Stringer_exports};
 export {
-  helper as default
+  Helper as default
 };

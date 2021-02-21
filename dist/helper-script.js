@@ -14,7 +14,7 @@ var jshelper = (() => {
   // src/Helper.js
   var Helper_exports = {};
   __export(Helper_exports, {
-    default: () => helper
+    default: () => Helper
   });
 
   // src/utils/Domer.js
@@ -334,6 +334,6 @@ var jshelper = (() => {
   }
 
   // src/Helper.js
-  var helper = {Domer: Domer_exports, Objecter: Objecter_exports, Stringer: Stringer_exports};
+  var Helper = {Domer: Domer_exports, Objecter: Objecter_exports, Stringer: Stringer_exports};
   return Helper_exports;
 })();
