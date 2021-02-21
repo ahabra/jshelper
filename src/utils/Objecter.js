@@ -1,15 +1,21 @@
+// Provides functions related to object manipulation.
+
+/** Check if given argument is null or undefined */
 export function isNil(x) {
   return x === null || x === undefined
 }
 
+/** Check if given argument is of String type */
 export function isString(s) {
   return isType(s, 'String')
 }
 
+/** Check if given argument is of Function type */
 export function isFunction(f) {
   return isType(f, 'Function')
 }
 
+/** Check if given argument is of Date type */
 export function isDate(d) {
   return isType(d, 'Date')
 }
@@ -18,6 +24,12 @@ function isType(v, type) {
   return Object.prototype.toString.call(v) === `[object ${type}]`
 }
 
+/**
+ *
+ * @param {Array or Object} object to traverse its members
+ * @param {callback function} func The function will be called with
+ * (key, value) as aruments
+ */
 export function forEachEntry(object, func) {
   if (!object || !func) return
 
