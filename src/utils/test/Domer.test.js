@@ -177,6 +177,20 @@ describe('Domer', ()=> {
       Domer.setContent(el, 'foo')
       expect(el.innerText).to.equal('foo')
     })
+
+    it('sets the content of an element to multiple elements', ()=> {
+      addDivs([1])
+      const el = Domer.id('div1')
+      expect(el.innerText).to.equal('div1')
+
+      const child1 = Domer.createElement('p', {}, 'p1')
+      const child2 = Domer.createElement('p', {}, 'p2')
+
+      Domer.setContent(el, child1, child2)
+
+      const children = Domer.all('p', el)
+      expect(children.length).to.equal(2)
+    })
   })
 
   describe('removeElements', ()=> {

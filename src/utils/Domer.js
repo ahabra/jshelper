@@ -1,3 +1,5 @@
+// Functions to inspect and manipulate the DOM
+
 import * as Objecter from './Objecter'
 
 /** Select element with a given id */
@@ -125,10 +127,14 @@ function addElements(target, tobeAdded, location) {
   }
 }
 
-/** Set the content of an element */
-export function setContent(element, content) {
+/**
+ * Set the content of an element
+ * @param {DomElement} element The DOM element to change its content
+ * @param {String or DomElement} content The new content. Can be a string or another DOM element
+ */
+export function setContent(element, ...content) {
   element.innerHTML = ''
-  element.append(content)
+  element.append(...content)
 }
 
 /** Remove elements matching given selector */

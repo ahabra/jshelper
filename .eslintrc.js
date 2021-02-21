@@ -53,7 +53,7 @@ module.exports = {
         'keyword-spacing': [error],
         'max-depth': [error, 4],
         'max-len': [error, {code: 100, comments: 100, ignoreUrls: true}],
-        'max-lines': [error, {max: 200, skipBlankLines: true, skipComments: false}],
+        'max-lines': [error, {max: 300, skipBlankLines: true, skipComments: false}],
         'max-lines-per-function': [error, {max: 200, skipBlankLines: true, skipComments: true, IIFEs: false}],
         'max-nested-callbacks': [error, 4],
         'max-params': [error, 4],

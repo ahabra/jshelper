@@ -213,9 +213,9 @@ var jshelper = (() => {
       target.insertAdjacentElement(location, tobeAdded);
     }
   }
-  function setContent(element, content) {
+  function setContent(element, ...content) {
     element.innerHTML = "";
-    element.append(content);
+    element.append(...content);
   }
   function removeElements(selector, root = document) {
     const elements = all(selector, root);

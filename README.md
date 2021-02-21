@@ -174,5 +174,45 @@ Search text for keys in values, and replace them. It takes these arguments:
 * `postTag` Optional, default `}`. The tag suffix
 
 
+### Domer
+Functions to inspect and manipulate the DOM.
+
+#### `id(elementId, root = document)`
+Select element with a given id
+
+#### `all(selector, root = document)`
+Select all elements matching given selector. Returns an array of matched elements.
+
+#### `first(selector, root = document)`
+Select first element matching selector. Selector can be a path with its parts separated by slash `/`. Returns null if not found.
+
+#### `getAttributes(el)`
+Get attributes of an element as an object with key/value
+
+#### `createElements(html = '')`
+Create an __array__ of DOM elements from given html.
+
+#### `createElement(name, attributes = {}, content = '')`
+Create a single DOM element.
+
+#### `tag(name, attributes = {}, content = '')`
+Create the html for a given tag.
+
+#### `add(target, tobeAdded, location = 'beforeend')`
+Add html or elements to given target element. It takes these arguments:
+* target The element to add to
+* tobeAdded Can be an html string, a DOM element, or an array of DOM elements
+* location String. Where to add in the target. One of: `(beforebegin, afterbegin, beforeend, afterend)`. The default is `beforeend`.
+
+#### `setContent(element, ...content)`
+Set the content of an element. It takes these arguments:
+* `element` The DOM element to change its content
+* `content` The new content. A set of Strings or DOM Elements to insert.
+
+#### `removeElements(selector, root = document)`
+Remove elements matching given selector
+
+#### `classPresentIf(el, cssClass, condition)`
+Add/remove a given class if condition is true/false
 
 
