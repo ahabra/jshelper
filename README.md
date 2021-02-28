@@ -43,7 +43,7 @@ import {Domer, Objecter, Stringer} from '@techexp/jshelper'
 If you installed as a Script, the library is available at `window.jshelper`
 
 ### Quick Code Demo
-This example shows hot to use some of the library's features:
+This example shows how to use some of the library's features:
 
 ```js
 import {Domer, Objecter, Stringer} from '@techexp/jshelper'
