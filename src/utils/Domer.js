@@ -147,6 +147,7 @@ export function removeElements(selector, root = document) {
 
 /** Add/remove a given class if condition is true/false */
 export function classPresentIf(el, cssClass, condition) {
+  if (!el) return
   const func = condition ? 'add' : 'remove'
   el.classList[func](cssClass)
 }

@@ -214,6 +214,11 @@ describe('Domer', ()=> {
       classPresentIf(el, 'c1', false)
       expect(el.classList.length).to.equal(0)
     })
+
+    it('ignores nul or undefined element', ()=> {
+      classPresentIf(null, 'c1', true)
+      classPresentIf(undefined, 'c1', true)
+    })
   })
 
 })
