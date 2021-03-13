@@ -80,6 +80,12 @@ Check if given argument is of Function type
 #### `isDate(d)`
 Check if given argument is of Date type
 
+#### `isNumber(n)`
+Check if argument is a valid number or a string that can be parsed to a number
+
+#### `isInteger(n)`
+Check if argument is a valid integer or a string that can be parsed to an integer
+
 #### `forEachEntry(object, func)`
 Traverse the given object/array and call `func` for each element.
 `func` will be called with (key, value) arguments. For arrays, key is the index.

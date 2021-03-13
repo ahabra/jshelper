@@ -20,6 +20,25 @@ export function isDate(d) {
   return isType(d, 'Date')
 }
 
+/** Check if argument is a valid number or a string that can be parsed to a number */
+export function isNumber(n) {
+  if (isType(n, 'Number')) {
+    if (Number.isNaN(n)) return false
+    return Number.isFinite(n)
+  }
+  if (!isString(n)) return false
+
+  n = n.trim()
+  if (n === '') return false
+  return !isNaN(n)
+}
+
+/** Check if argument is a valid integer or a string that can be parsed to an integer */
+export function isInteger(n) {
+  if (! isNumber(n)) return false
+  return Number.isInteger(Number.parseFloat(n))
+}
+
 function isType(v, type) {
   return Object.prototype.toString.call(v) === `[object ${type}]`
 }

@@ -38,6 +38,46 @@ describe('Objecter', () => {
     })
   })
 
+  describe('isNumber', ()=> {
+    const isNumber = Objecter.isNumber
+
+    it('Checks its argument', ()=> {
+      expect(isNumber(1)).to.be.true
+      expect(isNumber(1.23)).to.be.true
+
+      expect(isNumber()).to.be.false
+      expect(isNumber(isNumber)).to.be.false
+      expect(isNumber(false)).to.be.false
+      expect(isNumber(new Date())).to.be.false
+      expect(isNumber(NaN)).to.be.false
+      expect(isNumber(Infinity)).to.be.false
+    })
+
+    it('checks strings', ()=> {
+      expect(isNumber('')).to.be.false
+      expect(isNumber('  ')).to.be.false
+      expect(isNumber('3')).to.be.true
+      expect(isNumber('  3 ')).to.be.true
+      expect(isNumber('1.2')).to.be.true
+      expect(isNumber('3 w')).to.be.false
+    })
+  })
+
+  describe('isInteger', ()=> {
+    const isInteger = Objecter.isInteger
+
+    it('checks its arguments', ()=> {
+      expect(isInteger(1)).to.be.true
+      expect(isInteger(123)).to.be.true
+      expect(isInteger('123')).to.be.true
+
+      expect(isInteger('')).to.be.false
+      expect(isInteger('w')).to.be.false
+      expect(isInteger(false)).to.be.false
+      expect(isInteger(1.23)).to.be.false
+    })
+  })
+
   describe('forEachEntry', ()=> {
     const forEachEntry = Objecter.forEachEntry
 
