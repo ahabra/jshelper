@@ -1,6 +1,6 @@
 // Halper.js Common ES/JS utility library
 // https://github.com/ahabra/js-helper
-// Copyright 2021 (C) Abdul Habra. Version 0.1.3.
+// Copyright 2021 (C) Abdul Habra. Version 0.2.0.
 // Apache License Version 2.0
 
 
@@ -43,7 +43,9 @@ var jshelper = (() => {
     has: () => has,
     isDate: () => isDate,
     isFunction: () => isFunction,
+    isInteger: () => isInteger,
     isNil: () => isNil,
+    isNumber: () => isNumber,
     isString: () => isString
   });
   function isNil(x) {
@@ -57,6 +59,24 @@ var jshelper = (() => {
   }
   function isDate(d) {
     return isType(d, "Date");
+  }
+  function isNumber(n) {
+    if (isType(n, "Number")) {
+      if (Number.isNaN(n))
+        return false;
+      return Number.isFinite(n);
+    }
+    if (!isString(n))
+      return false;
+    n = n.trim();
+    if (n === "")
+      return false;
+    return !isNaN(n);
+  }
+  function isInteger(n) {
+    if (!isNumber(n))
+      return false;
+    return Number.isInteger(Number.parseFloat(n));
   }
   function isType(v, type) {
     return Object.prototype.toString.call(v) === `[object ${type}]`;
