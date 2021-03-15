@@ -1,6 +1,6 @@
 // Halper.js Common ES/JS utility library
 // https://github.com/ahabra/js-helper
-// Copyright 2021 (C) Abdul Habra. Version 0.2.0.
+// Copyright 2021 (C) Abdul Habra. Version 0.3.0.
 // Apache License Version 2.0
 
 
@@ -15,6 +15,7 @@ var jshelper = (() => {
   var Helper_exports = {};
   __export(Helper_exports, {
     Domer: () => Domer_exports,
+    LineCompare: () => LineCompare_exports,
     Objecter: () => Objecter_exports,
     Stringer: () => Stringer_exports
   });
@@ -355,6 +356,49 @@ var jshelper = (() => {
       }
     });
     return text;
+  }
+
+  // src/utils/LineCompare.js
+  var LineCompare_exports = {};
+  __export(LineCompare_exports, {
+    compareLines: () => compareLines
+  });
+  function compareLines(t1, t2, {trim: trim2 = true, skipEmpty = true, caseSensitive = true} = {trim: true, skipEmpty: true, caseSensitive: true}) {
+    t1 = toLines(t1, {trim: trim2, skipEmpty});
+    t2 = toLines(t2, {trim: trim2, skipEmpty});
+    if (t1.length !== t2.length) {
+      return `t1 has ${t1.length} lines(s) while t2 has ${t2.length} line(s).`;
+    }
+    for (let i = 0; i < t1.length; i++) {
+      const result = compareTwoLines(t1[i], t2[i], i, caseSensitive);
+      if (result.length > 0) {
+        return result;
+      }
+    }
+    return "";
+  }
+  function compareTwoLines(t1, t2, index, caseSensitive) {
+    const a = caseSensitive ? t1 : t1.toLowerCase();
+    const b = caseSensitive ? t2 : t2.toLowerCase();
+    if (a !== b) {
+      return `Line #${index + 1} mismatch.
+${t1}
+${t2}`;
+    }
+    return "";
+  }
+  function toLines(t, {trim: trim2, skipEmpty}) {
+    if (trim2) {
+      t = trim(t);
+    }
+    t = t.split("\n");
+    if (trim2) {
+      t = t.map((ln) => trim(ln));
+    }
+    if (skipEmpty) {
+      t = t.filter((ln) => !!ln);
+    }
+    return t;
   }
   return Helper_exports;
 })();
