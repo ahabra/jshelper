@@ -37,7 +37,7 @@ import * as Helper from '@techexp/jshelper'
 
 or you can import specific modules of the library:
 ```js
-import {Domer, Objecter, Stringer} from '@techexp/jshelper'
+import {Domer, Objecter, Stringer, LineCompare} from '@techexp/jshelper'
 ```
 
 If you installed as a Script, the library is available at `window.jshelper`
@@ -208,9 +208,9 @@ Create the html for a given tag.
 
 #### `add(target, tobeAdded, location = 'beforeend')`
 Add html or elements to given target element. It takes these arguments:
-* target The element to add to
-* tobeAdded Can be an html string, a DOM element, or an array of DOM elements
-* location String. Where to add in the target. One of: `(beforebegin, afterbegin, beforeend, afterend)`. The default is `beforeend`.
+* `target` The element to add to
+* `tobeAdded` Can be an html string, a DOM element, or an array of DOM elements
+* `location` String. Where to add in the target. One of: `(beforebegin, afterbegin, beforeend, afterend)`. The default is `beforeend`.
 
 #### `setContent(element, ...content)`
 Set the content of an element. It takes these arguments:
@@ -224,3 +224,17 @@ Remove elements matching given selector
 Add/remove a given class if condition is true/false
 
 
+### LineCompare
+Compare two blocks of text
+
+#### `compareLines(t1, t2, options)`
+Compare two blocks of text. It takes these arguments:
+* `t1` lines separated by line-break `\n` character.
+* `t2` lines separated by line-break `\n` character.
+* `options` An object with these members
+  * `trim`: Boolean. Default is `true`. Should lines be trimmed before comparison.
+  * `skipEmpty`: Boolean. Default is `true`. Should empty lines be ignored.
+  * `caseSensitive`: Boolean. Default is `true`. Should comparision be case-sensitive.
+
+Returns an empty string if the lines match, otherwise, returns a human-readable message explaining
+the difference.
