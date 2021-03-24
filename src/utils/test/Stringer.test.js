@@ -52,6 +52,34 @@ describe('Stringer', ()=> {
     })
   })
 
+  describe('replaceAll', ()=> {
+    const replaceAll = Stringer.replaceAll
+    let originalReplaceAll
+
+    beforeEach(()=> {
+      originalReplaceAll = String.prototype.replaceAll
+    })
+
+    afterEach(()=> {
+      String.prototype.replaceAll = originalReplaceAll
+    })
+
+    it('replaces all occurences of a string', ()=> {
+      expect(replaceAll('abba', 'b', 'x')).to.equal('axxa')
+      expect(replaceAll('abba', 'B', 'x')).to.equal('abba')
+      expect(replaceAll('', 'b', 'x')).to.equal('')
+      expect(replaceAll('abc', /b/g, 'x')).to.equal('axc')
+
+    })
+
+    it('replaces even when String.replaceAll() is not available', ()=> {
+      String.prototype.replaceAll = undefined
+
+      expect(replaceAll('abba', 'b', 'x')).to.equal('axxa')
+      expect(replaceAll('abc', /b/, 'x')).to.equal('axc')
+    })
+  })
+
   describe('replaceTemplate', ()=> {
     const replaceTemplate = Stringer.replaceTemplate
 

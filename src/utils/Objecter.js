@@ -39,6 +39,10 @@ export function isInteger(n) {
   return Number.isInteger(Number.parseFloat(n))
 }
 
+export function isRegExp(re) {
+  return isType(re, 'RegExp')
+}
+
 function isType(v, type) {
   return Object.prototype.toString.call(v) === `[object ${type}]`
 }

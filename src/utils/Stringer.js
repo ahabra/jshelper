@@ -166,6 +166,19 @@ export function isEmpty(s) {
   return s === undefined || s === null || s === ''
 }
 
+export function replaceAll(text, search, newStr) {
+  if (Objecter.isFunction(String.prototype.replaceAll)) {
+    return text.replaceAll(search, newStr)
+  }
+
+  if (Objecter.isRegExp(search)) {
+    return text.replace(search, newStr)
+  }
+
+  const re = new RegExp(search, 'g')
+  return text.replace(re, newStr)
+}
+
 /**
  * Search text for keys in values, and replace them.
  * @param {String} text The template text
@@ -177,7 +190,7 @@ export function replaceTemplate(text = '', values = {}, preTag = '${', postTag =
   Objecter.forEachEntry(values, (k, v) => {
     if (v !== undefined) {
       k = preTag + k + postTag
-      text = text.replaceAll(k, v)
+      text = replaceAll(text, k, v)
     }
   })
   return text

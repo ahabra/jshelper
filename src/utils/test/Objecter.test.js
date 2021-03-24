@@ -78,6 +78,16 @@ describe('Objecter', () => {
     })
   })
 
+  describe('isRegExp', ()=> {
+    const isRegExp = Objecter.isRegExp
+
+    it('checks for regex', ()=> {
+      expect(isRegExp(/a/)).to.be.true
+      expect(isRegExp(new RegExp('a', 'g'))).to.be.true
+      expect(isRegExp('')).to.be.false
+    })
+  })
+
   describe('forEachEntry', ()=> {
     const forEachEntry = Objecter.forEachEntry
 
