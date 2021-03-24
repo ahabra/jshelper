@@ -1,6 +1,6 @@
 // Halper.js Common ES/JS utility library
 // https://github.com/ahabra/js-helper
-// Copyright 2021 (C) Abdul Habra. Version 0.3.1.
+// Copyright 2021 (C) Abdul Habra. Version 0.4.0.
 // Apache License Version 2.0
 
 
@@ -47,6 +47,7 @@ var jshelper = (() => {
     isInteger: () => isInteger,
     isNil: () => isNil,
     isNumber: () => isNumber,
+    isRegExp: () => isRegExp,
     isString: () => isString
   });
   function isNil(x) {
@@ -78,6 +79,9 @@ var jshelper = (() => {
     if (!isNumber(n))
       return false;
     return Number.isInteger(Number.parseFloat(n));
+  }
+  function isRegExp(re) {
+    return isType(re, "RegExp");
   }
   function isType(v, type) {
     return Object.prototype.toString.call(v) === `[object ${type}]`;
@@ -262,6 +266,7 @@ var jshelper = (() => {
     removePrefix: () => removePrefix,
     removeSuffix: () => removeSuffix,
     removeSurrounding: () => removeSurrounding,
+    replaceAll: () => replaceAll,
     replaceTemplate: () => replaceTemplate,
     startsWith: () => startsWith,
     substringAfter: () => substringAfter,
@@ -348,11 +353,21 @@ var jshelper = (() => {
   function isEmpty(s) {
     return s === void 0 || s === null || s === "";
   }
+  function replaceAll(text, search, newStr) {
+    if (isFunction(String.prototype.replaceAll)) {
+      return text.replaceAll(search, newStr);
+    }
+    if (isRegExp(search)) {
+      return text.replace(search, newStr);
+    }
+    const re = new RegExp(search, "g");
+    return text.replace(re, newStr);
+  }
   function replaceTemplate(text = "", values = {}, preTag = "${", postTag = "}") {
     forEachEntry(values, (k, v) => {
       if (v !== void 0) {
         k = preTag + k + postTag;
-        text = text.replaceAll(k, v);
+        text = replaceAll(text, k, v);
       }
     });
     return text;
