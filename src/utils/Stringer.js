@@ -129,7 +129,7 @@ export function substringAfter(st, search, ignoreCase = false) {
 }
 
 /**
- * Find the substring before the first occurance of a search string
+ * Find the substring before the first occurrence of a search string
  * @param {*} st The string to search
  * @param {*} search The string to look for
  * @param {*} ignoreCase
@@ -194,4 +194,46 @@ export function replaceTemplate(text = '', values = {}, preTag = '${', postTag =
     }
   })
   return text
+}
+
+export function stripStart(s, stripChars = '') {
+  if (isEmpty(s)) return ''
+  if (! stripChars) return s
+
+  return stripStart_(s, new Set( Array.from(stripChars) ))
+}
+
+function stripStart_(s, stripSet) {
+  for (let i = 0; i < s.length; i++) {
+    if (!stripSet.has( s.charAt(i) )) {
+      return s.substring(i)
+    }
+  }
+  return ''
+}
+
+export function stripEnd(s, stripChars = '' ) {
+  if (isEmpty(s)) return ''
+  if (! stripChars) return s
+
+  return stripEnd_(s, new Set( Array.from(stripChars) ))
+}
+
+function stripEnd_(s, stripSet) {
+  for (let i = s.length - 1; i >= 0; i--) {
+    if (!stripSet.has(s.charAt(i))) {
+      return s.substring(0, i + 1)
+    }
+  }
+  return ''
+}
+
+export function strip(s, stripChars = '') {
+  if (s === undefined || s === '') return ''
+  if (! stripChars) return s
+
+  const stripSet = new Set( Array.from(stripChars) )
+  s = stripStart_(s, stripSet)
+  if (!s) return ''
+  return stripEnd_(s, stripSet)
 }

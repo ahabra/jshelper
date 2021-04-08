@@ -104,4 +104,67 @@ describe('Stringer', ()=> {
 
   })
 
+  describe('stripStart', ()=> {
+    const stripStart = Stringer.stripStart
+
+    it('returns empty string if given string is undefined or empty', ()=> {
+      expect(stripStart('')).to.equal('')
+      expect(stripStart()).to.equal('')
+    })
+
+    it('returns given string if no stripChars', ()=> {
+      expect(stripStart('a')).to.equal('a')
+    })
+
+    it('removes stripChars from start of string', ()=> {
+      expect(stripStart('abcd', 'ba')).to.equal('cd')
+      expect(stripStart('abcd', 'ab')).to.equal('cd')
+      expect(stripStart('aba', 'ba')).to.equal('')
+      expect(stripStart('abcd', 'x')).to.equal('abcd')
+    })
+
+  })
+
+  describe('stripEnd', ()=> {
+    const stripEnd = Stringer.stripEnd
+
+    it('returns empty string if given string is undefined or empty', ()=> {
+      expect(stripEnd('')).to.equal('')
+      expect(stripEnd()).to.equal('')
+    })
+
+    it('returns given string if no stripChars', ()=> {
+      expect(stripEnd('a')).to.equal('a')
+    })
+
+    it('removes stripChars from end of string', ()=> {
+      expect(stripEnd('abcd', 'cd')).to.equal('ab')
+      expect(stripEnd('abcd', 'dc')).to.equal('ab')
+      expect(stripEnd('abcd', 'dcd')).to.equal('ab')
+      expect(stripEnd('abcd', 'dcd')).to.equal('ab')
+      expect(stripEnd('cddd', 'cd')).to.equal('')
+    })
+  })
+
+  describe('strip', ()=> {
+    const strip = Stringer.strip
+
+    it('returns empty string if given string is undefined or empty', ()=> {
+      expect(strip('')).to.equal('')
+      expect(strip()).to.equal('')
+    })
+
+    it('returns given string if no stripChars', ()=> {
+      expect(strip('a')).to.equal('a')
+    })
+
+    it('strips from both sides of string', ()=> {
+      expect(strip('xyaby', 'xy')).to.equal('ab')
+      expect(strip('xyab', 'xy')).to.equal('ab')
+      expect(strip('abyy', 'xy')).to.equal('ab')
+      expect(strip('yy', 'xy')).to.equal('')
+    })
+
+  })
+
 })

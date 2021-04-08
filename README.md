@@ -181,6 +181,14 @@ Search text for keys in values, and replace them. It takes these arguments:
 * `preTag` Optional, default `${`. The tag prefix
 * `postTag` Optional, default `}`. The tag suffix
 
+#### `stripStart(s, stripChars = '')`
+Remove any of a set of characters from the start of a string.
+
+#### `stripEnd(s, stripChars = '')`
+Remove any of a set of characters from the end of a string.
+
+#### `strip(s, stripChars = '')`
+Remove any of a set of characters from the start and the end of a string.
 
 ### Domer
 Functions to inspect and manipulate the DOM.
