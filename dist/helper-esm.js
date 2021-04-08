@@ -1,6 +1,6 @@
 // Halper.js Common ES/JS utility library
 // https://github.com/ahabra/js-helper
-// Copyright 2021 (C) Abdul Habra. Version 0.4.0.
+// Copyright 2021 (C) Abdul Habra. Version 0.5.0.
 // Apache License Version 2.0
 
 
@@ -259,6 +259,9 @@ __export(Stringer_exports, {
   replaceAll: () => replaceAll,
   replaceTemplate: () => replaceTemplate,
   startsWith: () => startsWith,
+  strip: () => strip,
+  stripEnd: () => stripEnd,
+  stripStart: () => stripStart,
   substringAfter: () => substringAfter,
   substringBefore: () => substringBefore,
   trim: () => trim
@@ -361,6 +364,47 @@ function replaceTemplate(text = "", values = {}, preTag = "${", postTag = "}") {
     }
   });
   return text;
+}
+function stripStart(s, stripChars = "") {
+  if (isEmpty(s))
+    return "";
+  if (!stripChars)
+    return s;
+  return stripStart_(s, new Set(Array.from(stripChars)));
+}
+function stripStart_(s, stripSet) {
+  for (let i = 0; i < s.length; i++) {
+    if (!stripSet.has(s.charAt(i))) {
+      return s.substring(i);
+    }
+  }
+  return "";
+}
+function stripEnd(s, stripChars = "") {
+  if (isEmpty(s))
+    return "";
+  if (!stripChars)
+    return s;
+  return stripEnd_(s, new Set(Array.from(stripChars)));
+}
+function stripEnd_(s, stripSet) {
+  for (let i = s.length - 1; i >= 0; i--) {
+    if (!stripSet.has(s.charAt(i))) {
+      return s.substring(0, i + 1);
+    }
+  }
+  return "";
+}
+function strip(s, stripChars = "") {
+  if (s === void 0 || s === "")
+    return "";
+  if (!stripChars)
+    return s;
+  const stripSet = new Set(Array.from(stripChars));
+  s = stripStart_(s, stripSet);
+  if (!s)
+    return "";
+  return stripEnd_(s, stripSet);
 }
 
 // src/utils/LineCompare.js
