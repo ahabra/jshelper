@@ -4,10 +4,13 @@ A set of light-weight functions that help in everyday's JS programming.
 The size of this library, minified and zipped is about 2KB.
 
 ## Introduction
-There is a set of functions that I used to recreate on most JS web programming projects. This library organizses these functions and provide better test coverage. These functions can be groups into these categories:
+There is a set of functions that I used to recreate on most JS web programming projects.
+This library organizses these functions and provides better test coverage.
+These functions can be grouped into these categories:
 * Object functions: like check data type, travers object/array content, or deep equality check.
-* String functions: like indexOf, startsWith, endsWith, all with case sensitivity control. Also there is a quick template replace function.
-* Dom functions: find element by id or selector, simple attribute access, create and add element, and removeelements.
+* String functions: like indexOf, startsWith, endsWith, all with case sensitivity control.
+  Also there is a quick template replace function.
+* DOM functions: find element by id or selector, simple attribute access, create and add element, and remove elements.
 
 ## Install
 You can use this library as either an EcmaScript module, or the old way as a script which you include in your html file.
