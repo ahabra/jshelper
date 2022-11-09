@@ -1,15 +1,27 @@
 // Halper.js Common ES/JS utility library
 // https://github.com/ahabra/js-helper
-// Copyright 2021 (C) Abdul Habra. Version 0.5.1.
+// Copyright 2022 (C) Abdul Habra. Version 0.5.1.
 // Apache License Version 2.0
 
 
 var jshelper = (() => {
   var __defProp = Object.defineProperty;
+  var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+  var __getOwnPropNames = Object.getOwnPropertyNames;
+  var __hasOwnProp = Object.prototype.hasOwnProperty;
   var __export = (target, all2) => {
     for (var name in all2)
-      __defProp(target, name, {get: all2[name], enumerable: true});
+      __defProp(target, name, { get: all2[name], enumerable: true });
   };
+  var __copyProps = (to, from, except, desc) => {
+    if (from && typeof from === "object" || typeof from === "function") {
+      for (let key of __getOwnPropNames(from))
+        if (!__hasOwnProp.call(to, key) && key !== except)
+          __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+    }
+    return to;
+  };
+  var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
   // src/Helper.js
   var Helper_exports = {};
@@ -114,7 +126,7 @@ var jshelper = (() => {
       return a === b;
     return isEqualCompoundType(a, b);
   }
-  var simpleTypes = new Set(["boolean", "number", "bigint", "string", "symbol"]);
+  var simpleTypes = /* @__PURE__ */ new Set(["boolean", "number", "bigint", "string", "symbol"]);
   function isSimpleType(v) {
     return simpleTypes.has(typeof v);
   }
@@ -219,7 +231,7 @@ var jshelper = (() => {
     const sep = array.length > 0 ? " " : "";
     return sep + array.join(" ");
   }
-  var LOCATIONS = new Set(["beforebegin", "afterbegin", "beforeend", "afterend"]);
+  var LOCATIONS = /* @__PURE__ */ new Set(["beforebegin", "afterbegin", "beforeend", "afterend"]);
   function add(target, tobeAdded, location = "beforeend") {
     location = location.toLowerCase();
     if (!LOCATIONS.has(location))
@@ -422,9 +434,9 @@ var jshelper = (() => {
   __export(LineCompare_exports, {
     compareLines: () => compareLines
   });
-  function compareLines(t1, t2, {trim: trim2 = true, skipEmpty = true, caseSensitive = true} = {trim: true, skipEmpty: true, caseSensitive: true}) {
-    t1 = toLines(t1, {trim: trim2, skipEmpty});
-    t2 = toLines(t2, {trim: trim2, skipEmpty});
+  function compareLines(t1, t2, { trim: trim2 = true, skipEmpty = true, caseSensitive = true } = { trim: true, skipEmpty: true, caseSensitive: true }) {
+    t1 = toLines(t1, { trim: trim2, skipEmpty });
+    t2 = toLines(t2, { trim: trim2, skipEmpty });
     if (t1.length !== t2.length) {
       return `t1 has ${t1.length} lines(s) while t2 has ${t2.length} line(s).`;
     }
@@ -446,7 +458,7 @@ ${t2}`;
     }
     return "";
   }
-  function toLines(t, {trim: trim2, skipEmpty}) {
+  function toLines(t, { trim: trim2, skipEmpty }) {
     if (trim2) {
       t = trim(t);
     }
@@ -459,5 +471,5 @@ ${t2}`;
     }
     return t;
   }
-  return Helper_exports;
+  return __toCommonJS(Helper_exports);
 })();
