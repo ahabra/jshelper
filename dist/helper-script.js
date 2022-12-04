@@ -1,6 +1,6 @@
 // Halper.js Common ES/JS utility library
 // https://github.com/ahabra/js-helper
-// Copyright 2022 (C) Abdul Habra. Version 0.6.0.
+// Copyright 2022 (C) Abdul Habra. Version 0.6.2.
 // Apache License Version 2.0
 
 
