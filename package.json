@@ -6,7 +6,6 @@
   "license": "Apache",
   "repository": "ahabra/jshelper",
   "main": "dist/helper-esm.js",
-  "type": "commonjs",
   "keywords": [
     "JS Utilities",
     "String",
