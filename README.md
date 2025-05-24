@@ -5,11 +5,11 @@ The size of this library, minified and zipped is about 2KB.
 
 ## Introduction
 There is a set of functions that I used to recreate on most JS web programming projects.
-This library organizses these functions and provides better test coverage.
+This library organizes these functions and provides better test coverage.
 These functions can be grouped into these categories:
 * Object functions: like check data type, travers object/array content, or deep equality check.
 * String functions: like indexOf, startsWith, endsWith, all with case sensitivity control.
-  Also there is a quick template replace function.
+  Also, there is a quick template replace function.
 * DOM functions: find element by id or selector, simple attribute access, create and add element, and remove elements.
 
 ## Install
@@ -29,7 +29,8 @@ If you plan to use this package as a JS script library
     <script src="https://raw.githubusercontent.com/ahabra/jshelper/master/dist/helper-script-min.js"></script>
 ```
 
-Alternatively, you can download the file `https://raw.githubusercontent.com/ahabra/jshelper/master/dist/helper-script-min.js` and use directly. Note that there is a non-minified version at the same location.
+Alternatively, you can download the file `https://raw.githubusercontent.com/ahabra/jshelper/master/dist/helper-script-min.js`
+and use directly. Note that there is a non-minified version at the same location.
 
 
 ## Usage
@@ -181,8 +182,8 @@ Check if given string is undefined, null, or zero length.
 Search text for keys in values, and replace them. It takes these arguments:
 * `text` The template text
 * `values` An object with keys/values to replace in the template
-* `preTag` Optional, default `${`. The tag prefix
-* `postTag` Optional, default `}`. The tag suffix
+* `preTag` Optional, default `${`. The tagDef prefix
+* `postTag` Optional, default `}`. The tagDef suffix
 
 #### `stripStart(s, stripChars = '')`
 Remove any of a set of characters from the start of a string.
@@ -214,8 +215,8 @@ Create an __array__ of DOM elements from given html.
 #### `createElement(name, attributes = {}, content = '')`
 Create a single DOM element.
 
-#### `tag(name, attributes = {}, content = '')`
-Create the html for a given tag.
+#### `tagDef(name, attributes = {}, content = '')`
+Create the html for a given tagDef.
 
 #### `add(target, tobeAdded, location = 'beforeend')`
 Add html or elements to given target element. It takes these arguments:
