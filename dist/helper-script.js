@@ -76,20 +76,16 @@ var jshelper = (() => {
   }
   function isNumber(n) {
     if (isType(n, "Number")) {
-      if (Number.isNaN(n))
-        return false;
+      if (Number.isNaN(n)) return false;
       return Number.isFinite(n);
     }
-    if (!isString(n))
-      return false;
+    if (!isString(n)) return false;
     n = n.trim();
-    if (n === "")
-      return false;
+    if (n === "") return false;
     return !isNaN(n);
   }
   function isInteger(n) {
-    if (!isNumber(n))
-      return false;
+    if (!isNumber(n)) return false;
     return Number.isInteger(Number.parseFloat(n));
   }
   function isRegExp(re) {
@@ -99,8 +95,7 @@ var jshelper = (() => {
     return Object.prototype.toString.call(v) === `[object ${type}]`;
   }
   function forEachEntry(object, func) {
-    if (!object || !func)
-      return;
+    if (!object || !func) return;
     if (Array.isArray(object)) {
       object.forEach((v, index) => {
         func(index, v);
@@ -110,20 +105,16 @@ var jshelper = (() => {
     Object.entries(object).forEach((p) => func(p[0], p[1]));
   }
   function has(object, propName) {
-    if (!object || !propName)
-      return false;
+    if (!object || !propName) return false;
     return Object.prototype.hasOwnProperty.call(object, propName);
   }
   function equals(a, b) {
-    if (a === b)
-      return true;
-    if (a === void 0 || b === void 0)
-      return false;
+    if (a === b) return true;
+    if (a === void 0 || b === void 0) return false;
     return isEqual(a, b);
   }
   function isEqual(a, b) {
-    if (isSimpleType(a) || isSimpleType(b))
-      return a === b;
+    if (isSimpleType(a) || isSimpleType(b)) return a === b;
     return isEqualCompoundType(a, b);
   }
   var simpleTypes = /* @__PURE__ */ new Set(["boolean", "number", "bigint", "string", "symbol"]);
@@ -131,10 +122,8 @@ var jshelper = (() => {
     return simpleTypes.has(typeof v);
   }
   function isEqualCompoundType(a, b) {
-    if (!isEqualType(a, b))
-      return false;
-    if (isEqualDates(a, b))
-      return true;
+    if (!isEqualType(a, b)) return false;
+    if (isEqualDates(a, b)) return true;
     return isEqualObjects(a, b);
   }
   function isEqualType(a, b) {
@@ -151,8 +140,7 @@ var jshelper = (() => {
   }
   function isEqualObjects(a, b) {
     const akeys = Object.keys(a);
-    if (akeys.length !== Object.keys(b).length)
-      return false;
+    if (akeys.length !== Object.keys(b).length) return false;
     return akeys.every((k) => equals(a[k], b[k]));
   }
 
@@ -176,11 +164,13 @@ var jshelper = (() => {
     if (!selector.includes("/")) {
       return root.querySelector(selector);
     }
+    return traverseSelectorPath(selector, root);
+  }
+  function traverseSelectorPath(selector, root) {
     const path = selector.split("/").map((p) => p.trim()).filter((p) => p.length > 0);
     for (const p of path) {
       root = nextChild(p, root);
-      if (root === null)
-        break;
+      if (root === null) break;
     }
     return root;
   }
@@ -194,8 +184,7 @@ var jshelper = (() => {
   function getAttributes(el) {
     const result = {};
     const atts = el.attributes;
-    if (!atts || atts.length === 0)
-      return result;
+    if (!atts || atts.length === 0) return result;
     for (let i = 0; i < atts.length; i++) {
       const a = atts[i];
       result[a.name] = a.value;
@@ -204,8 +193,7 @@ var jshelper = (() => {
   }
   function createElements(html = "") {
     html = html.trim();
-    if (!html)
-      return [];
+    if (!html) return [];
     const temp = document.createElement("template");
     temp.innerHTML = html;
     return Array.from(temp.content.childNodes);
@@ -213,13 +201,11 @@ var jshelper = (() => {
   function createElement(name, attributes = {}, content = "") {
     const html = tag(name, attributes, content);
     const elements = createElements(html);
-    if (elements.length === 0)
-      return null;
+    if (elements.length === 0) return null;
     return elements[0];
   }
   function tag(name, attributes = {}, content = "") {
-    if (!name)
-      return "";
+    if (!name) return "";
     const atts = attsToString(attributes);
     return `<${name}${atts}>${content}</${name}>`;
   }
@@ -234,8 +220,7 @@ var jshelper = (() => {
   var LOCATIONS = /* @__PURE__ */ new Set(["beforebegin", "afterbegin", "beforeend", "afterend"]);
   function add(target, tobeAdded, location = "beforeend") {
     location = location.toLowerCase();
-    if (!LOCATIONS.has(location))
-      return false;
+    if (!LOCATIONS.has(location)) return false;
     if (isString(tobeAdded)) {
       target.insertAdjacentHTML(location, tobeAdded);
     } else {
@@ -261,8 +246,7 @@ var jshelper = (() => {
     });
   }
   function classPresentIf(el, cssClass, condition) {
-    if (!el)
-      return;
+    if (!el) return;
     const func = condition ? "add" : "remove";
     el.classList[func](cssClass);
   }
@@ -289,25 +273,21 @@ var jshelper = (() => {
     trim: () => trim
   });
   function indexOf(st, search, fromIndex = 0, ignoreCase = false) {
-    if (!st)
-      return -1;
+    if (!st) return -1;
     if (ignoreCase) {
       return st.toLowerCase().indexOf(search.toLowerCase(), fromIndex);
     }
     return st.indexOf(search, fromIndex);
   }
   function indexOfFirstMatch(st, callback) {
-    if (!callback || !st)
-      return -1;
+    if (!callback || !st) return -1;
     return st.split("").findIndex(callback);
   }
   function indexOfLastMatch(st, callback) {
-    if (!callback || !st)
-      return -1;
+    if (!callback || !st) return -1;
     const chars = st.split("");
     for (let i = chars.length; i >= 0; --i) {
-      if (callback(chars[i], i))
-        return i;
+      if (callback(chars[i], i)) return i;
     }
     return -1;
   }
@@ -344,8 +324,7 @@ var jshelper = (() => {
       return st;
     }
     const i = indexOf(st, search, 0, ignoreCase);
-    if (i < 0)
-      return "";
+    if (i < 0) return "";
     return st.substring(i + search.length);
   }
   function substringBefore(st, search, ignoreCase = false) {
@@ -353,13 +332,11 @@ var jshelper = (() => {
       return "";
     }
     const i = indexOf(st, search, 0, ignoreCase);
-    if (i < 0)
-      return st;
+    if (i < 0) return st;
     return st.substring(0, i);
   }
   function trim(s) {
-    if (isEmpty(s))
-      return "";
+    if (isEmpty(s)) return "";
     if (!isString(s)) {
       s = String(s);
     }
@@ -388,10 +365,8 @@ var jshelper = (() => {
     return text;
   }
   function stripStart(s, stripChars = "") {
-    if (isEmpty(s))
-      return "";
-    if (!stripChars)
-      return s;
+    if (isEmpty(s)) return "";
+    if (!stripChars) return s;
     return stripStart_(s, new Set(Array.from(stripChars)));
   }
   function stripStart_(s, stripSet) {
@@ -403,10 +378,8 @@ var jshelper = (() => {
     return "";
   }
   function stripEnd(s, stripChars = "") {
-    if (isEmpty(s))
-      return "";
-    if (!stripChars)
-      return s;
+    if (isEmpty(s)) return "";
+    if (!stripChars) return s;
     return stripEnd_(s, new Set(Array.from(stripChars)));
   }
   function stripEnd_(s, stripSet) {
@@ -418,14 +391,11 @@ var jshelper = (() => {
     return "";
   }
   function strip(s, stripChars = "") {
-    if (s === void 0 || s === "")
-      return "";
-    if (!stripChars)
-      return s;
+    if (s === void 0 || s === "") return "";
+    if (!stripChars) return s;
     const stripSet = new Set(Array.from(stripChars));
     s = stripStart_(s, stripSet);
-    if (!s)
-      return "";
+    if (!s) return "";
     return stripEnd_(s, stripSet);
   }
 
@@ -440,6 +410,9 @@ var jshelper = (() => {
     if (t1.length !== t2.length) {
       return `t1 has ${t1.length} lines(s) while t2 has ${t2.length} line(s).`;
     }
+    return compareArraysOfLines(t1, t2, caseSensitive);
+  }
+  function compareArraysOfLines(t1, t2, caseSensitive) {
     for (let i = 0; i < t1.length; i++) {
       const result = compareTwoLines(t1[i], t2[i], i, caseSensitive);
       if (result.length > 0) {

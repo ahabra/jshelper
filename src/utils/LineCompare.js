@@ -12,6 +12,10 @@ export function compareLines(t1, t2,
     return `t1 has ${t1.length} lines(s) while t2 has ${t2.length} line(s).`
   }
 
+  return compareArraysOfLines(t1, t2, caseSensitive)
+}
+
+function compareArraysOfLines(t1, t2, caseSensitive) {
   for (let i = 0; i < t1.length; i++) {
     const result = compareTwoLines(t1[i], t2[i], i, caseSensitive)
     if (result.length > 0) {

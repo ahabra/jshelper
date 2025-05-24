@@ -30,7 +30,10 @@ export function first(selector, root = document) {
   if (!selector.includes('/')) {
     return root.querySelector(selector)
   }
+  return traverseSelectorPath(selector, root)
+}
 
+function traverseSelectorPath(selector, root) {
   const path = selector.split('/').map(p => p.trim()).filter(p => p.length > 0)
 
   for (const p of path) {
@@ -39,6 +42,7 @@ export function first(selector, root = document) {
   }
   return root
 }
+
 
 function nextChild(pathItem, root) {
   const isShadowRoot = pathItem === 'shadowRoot' || pathItem === 'shadow-root'
@@ -106,7 +110,7 @@ const LOCATIONS = new Set(['beforebegin', 'afterbegin', 'beforeend', 'afterend']
  * @param location String. Where to add in the target. Ons of:
  * beforebegin, afterbegin, beforeend, afterend. The default if ommited is beforeend
  *@returns {boolean} true if added, false if not
-*/
+ */
 export function add(target, tobeAdded, location = 'beforeend') {
   location = location.toLowerCase()
   if (!LOCATIONS.has(location)) return false
